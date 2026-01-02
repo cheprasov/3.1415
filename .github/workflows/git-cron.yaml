@@ -1,0 +1,33 @@
+name: Git Cron
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-register:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Render Pi
+        run: node ./src/git-cron.js
+
+      - name: Commit and push
+        run: |
+          git config user.name 'Alexander Cheprasov'
+          git config user.email 'acheprasov84+github@gmail.com'
+          git add ./git-cron.log
+          git diff --cached --quiet && exit 0
+          git commit -m "upd"
+          git push
