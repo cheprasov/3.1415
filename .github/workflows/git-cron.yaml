@@ -29,5 +29,5 @@ jobs:
           git config user.email 'acheprasov84+github@gmail.com'
           git add ./git-cron.log
           git diff --cached --quiet && exit 0
-          git commit -m "upd"
+          git commit -m "3.1415"
           git push
