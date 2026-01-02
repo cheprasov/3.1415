@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  update-register:
+  git-cron:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Node
